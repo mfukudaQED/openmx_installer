@@ -119,6 +119,7 @@ echo "EXEFILE=\"${DIR}/openmx${VERSION}/work/openmx\"" >> ${FILEOUT2}
 
 cat << 'EOF' >> ${FILEOUT2}
 date &> ${LOGFILE}
+module list &>> ${LOGFILE}
 cat << END &>> ${LOGFILE}
 ---------------------------
 NUM_NODES = ${NUM_NODES}
