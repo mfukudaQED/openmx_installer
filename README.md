@@ -6,6 +6,11 @@
 	- Type the commands on a terminal. 
 - [Intel® oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?operatingsystem=linux&distributions=aptpackagemanager)
 
+- When you use Intel oneAPI, you should type the following command.
+```
+source /opt/intel/oneapi/setvars.sh
+```
+After setup the Intel oneAPI, then you can install OpenMX.
 ```
 bash install_openmx_for_wsl_inteloneapi.sh
 ```
