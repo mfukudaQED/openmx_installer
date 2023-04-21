@@ -1,6 +1,11 @@
 # Openmx Installer
 
 ## Install OpenMX in the Intel OneAPI compiler environment
+- [Intel® oneAPI Base Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?operatingsystem=linux&distributions=aptpackagemanager)
+	- For WSL, choose "Linux" and "Offline Installer".
+	- Type the commands on a terminal (from remote-ssh on VS Code). 
+- [Intel® oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?operatingsystem=linux&distributions=aptpackagemanager)
+
 ```
 bash install_openmx_for_wsl_inteloneapi.sh
 ```
