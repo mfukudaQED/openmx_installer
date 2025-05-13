@@ -24,23 +24,44 @@ tar zxvf patch${PATCH}.tar.gz
 echo "Modifying makefile for wsl with intel oneAPI ..."
 mv makefile makefile_ori
 
+# for previous version
+#awk '{
+#    if($0 ~ /^MKLROOT =/){
+#         print "MKLROOT = /opt/intel/oneapi/mkl/latest"
+#    }
+#    else if($0 ~ /^CC =/){
+#         print "CC = mpiicc -O3 -xHOST -ip -no-prec-div -qopenmp -I${MKLROOT}/include -I${MKLROOT}/include/fftw"
+#    }
+#    else if($0 ~ /^FC =/){
+#         print "FC = mpiifort -O3 -xHOST -ip -no-prec-div -qopenmp"
+#    }
+#    else if($0 ~ /^LIB=/){
+#         print "LIB= -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lifcore -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl"
+#    }
+#    else{
+#        print $0
+#    }
+#}' makefile_ori > makefile 
+
+# for later than ver.2025
 awk '{
     if($0 ~ /^MKLROOT =/){
          print "MKLROOT = /opt/intel/oneapi/mkl/latest"
     }
     else if($0 ~ /^CC =/){
-         print "CC = mpiicc -O3 -xHOST -ip -no-prec-div -qopenmp -I${MKLROOT}/include -I${MKLROOT}/include/fftw"
+         print "CC = mpiicx -O3 -xHOST -qopenmp -fcommon -Wno-error=implicit-function-declaration -Wno-error=implicit-int -I$(MKLROOT)/include/fftw"
     }
     else if($0 ~ /^FC =/){
-         print "FC = mpiifort -O3 -xHOST -ip -no-prec-div -qopenmp"
+         print "FC = mpiifx -O3 -xHOST -qopenmp"
     }
     else if($0 ~ /^LIB=/){
-         print "LIB= -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lifcore -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lm -ldl"
+         print "LIB= -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -liomp5 -lpthread -lifcore -lm -ldl"
     }
     else{
         print $0
     }
-}' makefile_ori > makefile 
+}' makefile_ori > makefile
+
 
 echo ""
 echo "List of compilers and libraries:"
